@@ -1,4 +1,4 @@
-import { pgTable, text, serial, timestamp } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, timestamp, integer } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -6,6 +6,7 @@ import { z } from "zod";
 export const quests = pgTable("quests", {
   id: serial("id").primaryKey(),
   studentName: text("student_name").notNull(),
+  periodNumber: integer("period_number").notNull(),
   startTime: timestamp("start_time").defaultNow().notNull(),
   returnedAt: timestamp("returned_at"),
 });

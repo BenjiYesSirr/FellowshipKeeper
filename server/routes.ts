@@ -11,28 +11,32 @@ async function seedDatabase() {
   if (existingQuests.length === 0) {
     const now = new Date();
     
-    // 1. Returned successfully (started 30 mins ago, returned 10 mins ago)
+    // 1. Returned successfully
     await db.insert(quests).values({
       studentName: "Frodo Baggins",
+      periodNumber: 1,
       startTime: new Date(now.getTime() - 30 * 60 * 1000),
       returnedAt: new Date(now.getTime() - 10 * 60 * 1000),
     });
 
-    // 2. Active Quest (started 20 mins ago)
+    // 2. Active Quest
     await db.insert(quests).values({
       studentName: "Samwise Gamgee",
+      periodNumber: 1,
       startTime: new Date(now.getTime() - 20 * 60 * 1000),
     });
 
     // 3. Failed Quest (started 2 hours ago, active)
     await db.insert(quests).values({
       studentName: "Peregrin Took",
+      periodNumber: 1,
       startTime: new Date(now.getTime() - 120 * 60 * 1000),
     });
 
     // 4. Failed Quest (started 3 hours ago, returned 1 hour ago -> took 2 hours)
     await db.insert(quests).values({
       studentName: "Meriadoc Brandybuck",
+      periodNumber: 1,
       startTime: new Date(now.getTime() - 180 * 60 * 1000),
       returnedAt: new Date(now.getTime() - 60 * 60 * 1000),
     });
